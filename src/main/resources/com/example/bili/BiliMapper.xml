@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 對應持久層的介面 -->
+<mapper namespace="com.example.bili.dao.BiliDAO">
+    <insert id="addLine">
+        insert into bilicount (date, count)
+        values (#{date}, #{count});
+    </insert>
+    <update id="updateCount">
+        update bilicount
+        set count = #{count}
+        where date = #{date};
+    </update>
+
+    <select id="selectToday" resultType="Bili">
+        select *
+        from bilicount
+        where date = #{date};
+    </select>
+    <select id="getBilis" resultType="com.example.bili.entity.Bili">
+        select *
+        from bilicount;
+    </select>
+</mapper>
